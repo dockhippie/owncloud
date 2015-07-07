@@ -21,6 +21,7 @@ docker run -p 80:80 -d --name owncloud-apache webhippie/owncloud-apache:latest
 ## Available environment variables
 
 ```bash
+ENV OWNCLOUD_DOMAIN owncloud.example.com
 ENV OWNCLOUD_DB_TYPE sqlite
 ENV OWNCLOUD_DB_NAME owncloud
 ENV OWNCLOUD_DB_USERNAME

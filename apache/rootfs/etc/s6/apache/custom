@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export DOLLAR='$'
+declare -x DOLLAR="$"
+declare -x OWNCLOUD_DOMAIN
 declare -x OWNCLOUD_DB_TYPE
 declare -x OWNCLOUD_DB_NAME
 declare -x OWNCLOUD_DB_USERNAME
@@ -9,6 +10,11 @@ declare -x OWNCLOUD_DB_HOST
 declare -x OWNCLOUD_DB_PREFIX
 declare -x OWNCLOUD_ADMIN_USERNAME
 declare -x OWNCLOUD_ADMIN_PASSWORD
+
+if [ -z "${OWNCLOUD_DOMAIN}" ]
+then
+  OWNCLOUD_DOMAIN=${HOSTNAME}
+fi
 
 if [ -z "${OWNCLOUD_DB_TYPE}" ]
 then
@@ -50,11 +56,51 @@ then
   OWNCLOUD_ADMIN_PASSWORD=admin
 fi
 
-envsubst < /etc/templates/autoconfig.php.tmpl > /app/config/autoconfig.php
-chown apache:apache /app/config/autoconfig.php
+if [[ ! -f /app/config/domains.config.php ]]
+then
+  envsubst < /etc/templates/domains.config.php > /app/config/domains.config.php
+  chown apache:apache /app/config/domains.config.php
+fi
+
+if [[ ! -f /app/config/apps.config.php ]]
+then
+  cp /etc/templates/apps.config.php /app/config/apps.config.php
+  chown apache:apache /app/config/apps.config.php
+fi
+
+if [[ ! -f /app/config/logging.config.php ]]
+then
+  cp /etc/templates/logging.config.php /app/config/logging.config.php
+  chown apache:apache /app/config/logging.config.php
+fi
+
+if [[ ! -f /app/config/apcu.config.php ]]
+then
+  cp /etc/templates/apcu.config.php /app/config/apcu.config.php
+  chown apache:apache /app/config/apcu.config.php
+fi
 
 if [[ ! -f /app/config/config.php ]]
 then
-  envsubst < /etc/templates/config.php.tmpl > /app/config/config.php
-  chown apache:apache /app/config/config.php
+  pushd /app > /dev/null
+  CMD="/usr/bin/php occ maintenance:install --no-interaction --data-dir /app/data"
+
+  [[ -n "${OWNCLOUD_DB_TYPE}" ]] && CMD="${CMD} --database ${OWNCLOUD_DB_TYPE}"
+  [[ -n "${OWNCLOUD_DB_NAME}" ]] && CMD="${CMD} --database-name ${OWNCLOUD_DB_NAME}"
+  [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && CMD="${CMD} --database-user ${OWNCLOUD_DB_USERNAME}"
+  [[ -n "${OWNCLOUD_DB_PASSWORD}" ]] && CMD="${CMD} --database-pass ${OWNCLOUD_DB_PASSWORD}"
+  [[ -n "${OWNCLOUD_DB_HOST}" ]] && CMD="${CMD} --database-host ${OWNCLOUD_DB_HOST}"
+  [[ -n "${OWNCLOUD_DB_PREFIX}" ]] && CMD="${CMD} --database-table-prefix ${OWNCLOUD_DB_PREFIX}"
+  [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && CMD="${CMD} --admin-user ${OWNCLOUD_ADMIN_USERNAME}"
+  [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && CMD="${CMD} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
+
+  su apache -c "${CMD}"
+  su apache -c "/usr/bin/php occ background:cron --no-interaction"
+
+  popd > /dev/null
+else
+  pushd /app > /dev/null
+  su apache -c "/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
+  popd > /dev/null
 fi
+

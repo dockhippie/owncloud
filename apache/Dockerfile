@@ -9,11 +9,10 @@ RUN apk add --update -f \
   php-ftp \
   php-exif \
   php-apcu \
+  php-posix \
   imagemagick \
   ffmpeg \
-  samba-client \
-  tar \
-  rsync && \
+  samba-client && \
   rm -rf /var/cache/apk/* && \
   curl -o - ${OWNCLOUD_TARBALL} | tar -jxf - -C /tmp/ && \
   rsync -az /tmp/owncloud/ /app && \
