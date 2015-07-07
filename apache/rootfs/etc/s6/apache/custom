@@ -1,0 +1,60 @@
+#!/bin/bash
+
+export DOLLAR='$'
+declare -x OWNCLOUD_DB_TYPE
+declare -x OWNCLOUD_DB_NAME
+declare -x OWNCLOUD_DB_USERNAME
+declare -x OWNCLOUD_DB_PASSWORD
+declare -x OWNCLOUD_DB_HOST
+declare -x OWNCLOUD_DB_PREFIX
+declare -x OWNCLOUD_ADMIN_USERNAME
+declare -x OWNCLOUD_ADMIN_PASSWORD
+
+if [ -z "${OWNCLOUD_DB_TYPE}" ]
+then
+  OWNCLOUD_DB_TYPE=sqlite
+fi
+
+if [ -z "${OWNCLOUD_DB_NAME}" ]
+then
+  OWNCLOUD_DB_NAME=owncloud
+fi
+
+if [ -z "${OWNCLOUD_DB_USERNAME}" ]
+then
+  OWNCLOUD_DB_USERNAME=
+fi
+
+if [ -z "${OWNCLOUD_DB_PASSWORD}" ]
+then
+  OWNCLOUD_DB_PASSWORD=
+fi
+
+if [ -z "${OWNCLOUD_DB_HOST}" ]
+then
+  OWNCLOUD_DB_HOST=
+fi
+
+if [ -z "${OWNCLOUD_DB_PREFIX}" ]
+then
+  OWNCLOUD_DB_PREFIX=
+fi
+
+if [ -z "${OWNCLOUD_ADMIN_USERNAME}" ]
+then
+  OWNCLOUD_ADMIN_USERNAME=admin
+fi
+
+if [ -z "${OWNCLOUD_ADMIN_PASSWORD}" ]
+then
+  OWNCLOUD_ADMIN_PASSWORD=admin
+fi
+
+envsubst < /etc/templates/autoconfig.php.tmpl > /app/config/autoconfig.php
+chown apache:apache /app/config/autoconfig.php
+
+if [[ ! -f /app/config/config.php ]]
+then
+  envsubst < /etc/templates/config.php.tmpl > /app/config/config.php
+  chown apache:apache /app/config/config.php
+fi

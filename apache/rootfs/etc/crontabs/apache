@@ -1,0 +1,1 @@
+*/15 * * * * /usr/bin/php -f /app/cron.php > /dev/null 2>&1

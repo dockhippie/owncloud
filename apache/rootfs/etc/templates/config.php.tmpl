@@ -1,0 +1,20 @@
+<?php
+${DOLLAR}CONFIG = array(
+  "datadirectory" => "/app/data",
+
+  "apps_paths" => array(
+    0 => array(
+      "path" => OC::${DOLLAR}SERVERROOT . "/apps",
+      "url" => "/apps",
+      "writable" => false
+    ),
+    1 => array(
+      "path" => "/app/custom",
+      "url" => "/custom",
+      "writable" => true
+    )
+  ),
+
+  "loglevel" => "3",
+  "logfile" => "/dev/stdout"
+);
