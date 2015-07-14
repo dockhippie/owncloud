@@ -8,7 +8,6 @@ RUN apk add --update -f \
   php-ldap \
   php-ftp \
   php-exif \
-  php-apcu \
   php-posix \
   imagemagick \
   ffmpeg \

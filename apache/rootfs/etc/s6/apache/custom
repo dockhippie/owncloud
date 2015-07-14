@@ -74,12 +74,6 @@ then
   chown apache:apache /app/config/logging.config.php
 fi
 
-if [[ ! -f /app/config/apcu.config.php ]]
-then
-  cp /etc/templates/apcu.config.php /app/config/apcu.config.php
-  chown apache:apache /app/config/apcu.config.php
-fi
-
 if [[ ! -f /app/config/config.php ]]
 then
   pushd /app > /dev/null
