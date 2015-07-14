@@ -89,7 +89,7 @@ then
   [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && CMD="${CMD} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
 
   su apache -c "${CMD}"
-  su apache -c "/usr/bin/php occ background:cron --no-interaction"
+  # su apache -c "/usr/bin/php occ background:cron --no-interaction"
 
   popd > /dev/null
 else
