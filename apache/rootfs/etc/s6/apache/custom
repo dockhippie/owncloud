@@ -94,13 +94,20 @@ then
   [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && CMD="${CMD} --admin-user ${OWNCLOUD_ADMIN_USERNAME}"
   [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && CMD="${CMD} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
 
+  echo "Installing with: ${CMD}"
   su apache -c "${CMD}"
-  # su apache -c "/usr/bin/php occ background:cron --no-interaction"
 
   popd > /dev/null
 else
   pushd /app > /dev/null
-  su apache -c "/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
+  CMD="/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
+
+  echo "Upgrading with: ${CMD}"
+  su apache -c "${CMD}"
+
   popd > /dev/null
 fi
 
+pushd /app > /dev/null
+su apache -c "/usr/bin/php occ background:cron --no-interaction"
+popd > /dev/null
