@@ -1,12 +1,11 @@
 # Owncloud
 
-This is our collection of custom Owncloud containers running on an
+This is our collection of custom [Owncloud](https://owncloud.org) containers running on an
 [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Containers
 
-* [nginx](nginx/): Owncloud combined with Nginx
 * [apache](apache/): Owncloud combined with Apache
 
 
