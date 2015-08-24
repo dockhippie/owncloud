@@ -20,7 +20,12 @@ docker run -ti \
 * [latest](https://github.com/dockhippie/owncloud/tree/master)
   available as ```webhippie/owncloud-apache:latest``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud-apache/)
-
+* [8.1.0](https://github.com/dockhippie/owncloud/tree/master)
+  available as ```webhippie/owncloud-apache:8.1.0``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud-apache/)
+* [8.0.5](https://github.com/dockhippie/owncloud/tree/master)
+  available as ```webhippie/owncloud-apache:8.0.5``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud-apache/)
 
 ## Available environment variables
 
