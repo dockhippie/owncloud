@@ -24,4 +24,4 @@ ADD rootfs /
 EXPOSE 80
 
 WORKDIR /app
-CMD ["/usr/bin/s6-svscan", "/etc/s6"]
+CMD ["/bin/s6-svscan", "/etc/s6"]
