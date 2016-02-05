@@ -1,5 +1,6 @@
 <?php
 $CONFIG = array(
+  "loglevel" => 3,
   "apps_paths" => array(
     0 => array(
       "path" => OC::$SERVERROOT . "/apps",
@@ -11,5 +12,10 @@ $CONFIG = array(
       "url" => "/custom",
       "writable" => true
     )
+  ),
+  "trusted_domains" => array(
+    0 => "localhost",
+    1 => "{{ envString "DOMAIN" }}",
+    2 => "{{ envString "IPADDRESS" }}"
   )
 );

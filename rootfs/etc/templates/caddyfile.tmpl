@@ -1,0 +1,32 @@
+:8080
+root /app
+
+internal /3rdparty
+internal /build
+internal /config
+internal /lib
+internal /tests
+internal /data
+
+fastcgi / 127.0.0.1:9000 php
+
+rewrite {
+  regexp /index.php/.*
+  to /index.php?{query}
+}
+
+rewrite {
+  regexp /remote.php/.*
+  to /remote.php?{query}
+}
+
+redir {
+  /.well-known/host-meta /public.php?service=host-meta
+  /.well-known/host-meta.json /public.php?service=host-meta-json
+
+  /.well-known/carddav /remote.php/carddav/ 301
+  /apps/calendar/caldav.php /remote.php/caldav/
+
+  /.well-known/caldav /remote.php/caldav/ 301
+  /apps/contacts/carddav.php remote.php/carddav/
+}

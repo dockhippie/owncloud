@@ -1,0 +1,39 @@
+#!/bin/bash
+
+pushd /app > /dev/null
+  if [[ ! -f /app/config/config.php ]]
+  then
+    CMD="/usr/bin/php occ maintenance:install --no-interaction --data-dir /app/data"
+
+    [[ -n "${OWNCLOUD_DB_TYPE}" ]] && CMD="${CMD} --database ${OWNCLOUD_DB_TYPE}"
+    [[ -n "${OWNCLOUD_DB_NAME}" ]] && CMD="${CMD} --database-name ${OWNCLOUD_DB_NAME}"
+    [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && CMD="${CMD} --database-user ${OWNCLOUD_DB_USERNAME}"
+    [[ -n "${OWNCLOUD_DB_PASSWORD}" ]] && CMD="${CMD} --database-pass ${OWNCLOUD_DB_PASSWORD}"
+    [[ -n "${OWNCLOUD_DB_HOST}" ]] && CMD="${CMD} --database-host ${OWNCLOUD_DB_HOST}"
+    [[ -n "${OWNCLOUD_DB_PREFIX}" ]] && CMD="${CMD} --database-table-prefix ${OWNCLOUD_DB_PREFIX}"
+    [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && CMD="${CMD} --admin-user ${OWNCLOUD_ADMIN_USERNAME}"
+    [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && CMD="${CMD} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
+
+    echo "Installing with: ${CMD}"
+    /usr/bin/gosu \
+      caddy \
+      ${CMD}
+  else
+    CMD="/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
+
+    echo "Upgrading with: ${CMD}"
+    /usr/bin/gosu \
+      caddy \
+      ${CMD}
+  fi
+
+  /usr/bin/gosu \
+    caddy \
+    /usr/bin/php \
+    occ \
+    background:cron \
+    --no-interaction
+popd > /dev/null
+
+chown -R caddy:caddy \
+  /app

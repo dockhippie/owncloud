@@ -1,0 +1,27 @@
+#!/bin/bash
+
+declare -x OWNCLOUD_IPADDRESS
+declare -x OWNCLOUD_DOMAIN
+declare -x OWNCLOUD_DB_TYPE
+declare -x OWNCLOUD_DB_NAME
+declare -x OWNCLOUD_DB_USERNAME
+declare -x OWNCLOUD_DB_PASSWORD
+declare -x OWNCLOUD_DB_HOST
+declare -x OWNCLOUD_DB_PREFIX
+declare -x OWNCLOUD_ADMIN_USERNAME
+declare -x OWNCLOUD_ADMIN_PASSWORD
+
+[[ -z "${OWNCLOUD_IPADDRESS}" ]] && OWNCLOUD_IPADDRESS=$(awk 'NR==1 {print $1}' /etc/hosts)
+[[ -z "${OWNCLOUD_DOMAIN}" ]] && OWNCLOUD_DOMAIN=${HOSTNAME}
+[[ -z "${OWNCLOUD_DB_TYPE}" ]] && OWNCLOUD_DB_TYPE="sqlite"
+[[ -z "${OWNCLOUD_DB_NAME}" ]] && OWNCLOUD_DB_NAME="owncloud"
+[[ -z "${OWNCLOUD_DB_USERNAME}" ]] && OWNCLOUD_DB_USERNAME=""
+[[ -z "${OWNCLOUD_DB_PASSWORD}" ]] && OWNCLOUD_DB_PASSWORD=""
+[[ -z "${OWNCLOUD_DB_HOST}" ]] && OWNCLOUD_DB_HOST=""
+[[ -z "${OWNCLOUD_DB_PREFIX}" ]] && OWNCLOUD_DB_PREFIX=""
+[[ -z "${OWNCLOUD_ADMIN_USERNAME}" ]] && OWNCLOUD_ADMIN_USERNAME="admin"
+[[ -z "${OWNCLOUD_ADMIN_PASSWORD}" ]] && OWNCLOUD_ADMIN_PASSWORD="admin"
+
+/usr/bin/templater -d -p owncloud \
+  -o /app/config/generated.config.php \
+  /etc/templates/config.php.tmpl
