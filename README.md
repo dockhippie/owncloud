@@ -1,6 +1,6 @@
 # ownCloud
 
-[![](https://images.microbadger.com/badges/image/webhippie/owncloud.svg)](https://microbadger.com/images/webhippie/owncloud "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/webhippie/owncloud:8.1.1.svg)](https://microbadger.com/images/webhippie/owncloud:8.1.1 "Get your own image badge on microbadger.com")
 
 These are docker images for [ownCloud](https://owncloud.org/) with Apache running on an [PHP container](https://registry.hub.docker.com/u/webhippie/php-apache/).
 
