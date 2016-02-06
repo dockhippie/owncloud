@@ -20,6 +20,11 @@ rewrite {
   to /remote.php?{query}
 }
 
+rewrite {
+  regexp /ocs/v1.php/.*
+  to /ocs/v1.php?{query}
+}
+
 redir {
   /.well-known/host-meta /public.php?service=host-meta
   /.well-known/host-meta.json /public.php?service=host-meta-json
