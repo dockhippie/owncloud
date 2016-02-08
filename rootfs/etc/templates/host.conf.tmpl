@@ -1,0 +1,20 @@
+<VirtualHost *:8080>
+  DocumentRoot "/app"
+
+  SetEnvIf Request_URI "^/favicon\.ico$" dontlog
+  SetEnvIf Request_URI "^/robots\.txt$" dontlog
+
+  <Directory /app>
+    Options +FollowSymlinks
+    AllowOverride All
+
+    <IfModule mod_dav.c>
+      Dav off
+    </IfModule>
+
+    SetEnv HOME /app
+    SetEnv HTTP_HOME /app
+
+    Require all granted
+  </Directory>
+</VirtualHost>

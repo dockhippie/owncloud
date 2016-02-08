@@ -1,4 +1,4 @@
-FROM webhippie/php-caddy:latest
+FROM webhippie/php-apache:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 VOLUME ["/app/data", "/app/config", "/app/custom"]

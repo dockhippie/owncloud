@@ -16,24 +16,24 @@ pushd /app > /dev/null
 
     echo "Installing with: ${CMD}"
     /usr/bin/gosu \
-      caddy \
+      apache \
       ${CMD}
   else
     CMD="/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
 
     echo "Upgrading with: ${CMD}"
     /usr/bin/gosu \
-      caddy \
+      apache \
       ${CMD}
   fi
 
   /usr/bin/gosu \
-    caddy \
+    apache \
     /usr/bin/php \
     occ \
     background:cron \
     --no-interaction
 popd > /dev/null
 
-chown -R caddy:caddy \
+chown -R apache:apache \
   /app

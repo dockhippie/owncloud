@@ -2,8 +2,8 @@
 
 [![](https://badge.imagelayers.io/webhippie/owncloud:latest.svg)](https://imagelayers.io/?images=webhippie/owncloud:latest 'Get your own badge on imagelayers.io')
 
-These are docker images for Owncloud with Caddy running on an
-[PHP container](https://registry.hub.docker.com/u/webhippie/php-caddy/).
+These are docker images for Owncloud with Apache running on an
+[PHP container](https://registry.hub.docker.com/u/webhippie/php-apache/).
 
 
 ## Usage
@@ -73,6 +73,8 @@ ENV PHP_UPLOAD_MAX_FILESIZE 2G
 ENV PHP_MAX_EXECUTION_TIME 3600
 ENV PHP_MAX_INPUT_TIME 3600
 ENV PHP_DATE_TIMEZONE UTC
+ENV APACHE_HOSTNAME $HOSTNAME
+
 ```
 
 ```bash
