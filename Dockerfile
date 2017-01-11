@@ -3,10 +3,10 @@ MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 VOLUME ["/app/data", "/app/config", "/app/custom"]
 
-ENTRYPOINT ["/usr/bin/entrypoint"]
-CMD ["/bin/s6-svscan", "/etc/s6"]
 EXPOSE 8080
+
 WORKDIR /app
+CMD ["/bin/s6-svscan", "/etc/s6"]
 
 ENV OWNCLOUD_VERSION 9.1.3
 ENV OWNCLOUD_TARBALL https://github.com/owncloud/core/archive/v${OWNCLOUD_VERSION}.tar.gz
@@ -18,6 +18,8 @@ RUN apk update && \
     php7-ftp \
     php7-exif \
     php7-posix \
+    php7-xmlreader \
+    php7-pcntl \
     imagemagick \
     ffmpeg \
     samba-client \
