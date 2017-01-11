@@ -1,18 +1,9 @@
-# Owncloud
+# ownCloud
 
 [![](https://badge.imagelayers.io/webhippie/owncloud:latest.svg)](https://imagelayers.io/?images=webhippie/owncloud:latest 'Get your own badge on imagelayers.io')
 
-These are docker images for Owncloud with Apache running on an
-[PHP container](https://registry.hub.docker.com/u/webhippie/php-apache/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name owncloud \
-  webhippie/owncloud:latest
-```
+These are docker images for [ownCloud](https://owncloud.org/) running on an
+[PHP Apache container](https://registry.hub.docker.com/u/webhippie/php-apache/).
 
 
 ## Versions
@@ -47,6 +38,18 @@ docker run -ti \
 * [8.1.0](https://github.com/dockhippie/owncloud/tree/8.1.0)
   available as ```webhippie/owncloud:8.1.0``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+
+
+## Volumes
+
+* /app/data
+* /app/config
+* /app/custom
+
+
+## Ports
+
+* 8080
 
 
 ## Available environment variables
@@ -107,5 +110,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2016 Thomas Boerger <http://www.webhippie.de>
 ```
