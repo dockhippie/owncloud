@@ -14,13 +14,14 @@ ENV THIRDPARTY_TARBALL https://github.com/owncloud/3rdparty/archive/v${OWNCLOUD_
 
 RUN apk update && \
   apk add \
-    php-ldap \
-    php-ftp \
-    php-exif \
-    php-posix \
+    php7-ldap \
+    php7-ftp \
+    php7-exif \
+    php7-posix \
     imagemagick \
     ffmpeg \
-    samba-client && \
+    samba-client \
+    su-exec && \
   rm -rf \
     /var/cache/apk/*
 
