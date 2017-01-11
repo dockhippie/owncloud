@@ -11,6 +11,63 @@ These are docker images for [ownCloud](https://owncloud.org/) running on an
 * [latest](https://github.com/dockhippie/owncloud/tree/master)
   available as ```webhippie/owncloud:latest``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.1.3](https://github.com/dockhippie/owncloud/tree/9.1.3)
+  available as ```webhippie/owncloud:9.1.3``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.1.2](https://github.com/dockhippie/owncloud/tree/9.1.2)
+  available as ```webhippie/owncloud:9.1.2``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.1.1](https://github.com/dockhippie/owncloud/tree/9.1.1)
+  available as ```webhippie/owncloud:9.1.1``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.1.0](https://github.com/dockhippie/owncloud/tree/9.1.0)
+  available as ```webhippie/owncloud:9.1.0``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.7](https://github.com/dockhippie/owncloud/tree/9.0.7)
+  available as ```webhippie/owncloud:9.0.7``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.6](https://github.com/dockhippie/owncloud/tree/9.0.6)
+  available as ```webhippie/owncloud:9.0.6``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.5](https://github.com/dockhippie/owncloud/tree/9.0.5)
+  available as ```webhippie/owncloud:9.0.5``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.4](https://github.com/dockhippie/owncloud/tree/9.0.4)
+  available as ```webhippie/owncloud:9.0.4``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.3](https://github.com/dockhippie/owncloud/tree/9.0.3)
+  available as ```webhippie/owncloud:9.0.3``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.2](https://github.com/dockhippie/owncloud/tree/9.0.2)
+  available as ```webhippie/owncloud:9.0.2``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.1](https://github.com/dockhippie/owncloud/tree/9.0.1)
+  available as ```webhippie/owncloud:9.0.1``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [9.0.0](https://github.com/dockhippie/owncloud/tree/9.0.0)
+  available as ```webhippie/owncloud:9.0.0``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.9](https://github.com/dockhippie/owncloud/tree/8.2.9)
+  available as ```webhippie/owncloud:8.2.9``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.8](https://github.com/dockhippie/owncloud/tree/8.2.8)
+  available as ```webhippie/owncloud:8.2.8``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.7](https://github.com/dockhippie/owncloud/tree/8.2.7)
+  available as ```webhippie/owncloud:8.2.7``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.6](https://github.com/dockhippie/owncloud/tree/8.2.6)
+  available as ```webhippie/owncloud:8.2.6``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.5](https://github.com/dockhippie/owncloud/tree/8.2.5)
+  available as ```webhippie/owncloud:8.2.5``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.4](https://github.com/dockhippie/owncloud/tree/8.2.4)
+  available as ```webhippie/owncloud:8.2.4``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
+* [8.2.3](https://github.com/dockhippie/owncloud/tree/8.2.3)
+  available as ```webhippie/owncloud:8.2.3``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)
 * [8.2.2](https://github.com/dockhippie/owncloud/tree/8.2.2)
   available as ```webhippie/owncloud:8.2.2``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/owncloud/)

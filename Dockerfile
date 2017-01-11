@@ -8,7 +8,7 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 EXPOSE 8080
 WORKDIR /app
 
-ENV OWNCLOUD_VERSION 8.2.2
+ENV OWNCLOUD_VERSION 9.1.3
 ENV OWNCLOUD_TARBALL https://github.com/owncloud/core/archive/v${OWNCLOUD_VERSION}.tar.gz
 ENV THIRDPARTY_TARBALL https://github.com/owncloud/3rdparty/archive/v${OWNCLOUD_VERSION}.tar.gz
 
