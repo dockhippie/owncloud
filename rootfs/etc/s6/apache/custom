@@ -8,6 +8,8 @@ declare -x OWNCLOUD_DB_USERNAME
 declare -x OWNCLOUD_DB_PASSWORD
 declare -x OWNCLOUD_DB_HOST
 declare -x OWNCLOUD_DB_PREFIX
+declare -x OWNCLOUD_DB_TEST_TIMEOUT
+declare -x OWNCLOUD_DB_TEST_FAIL
 declare -x OWNCLOUD_ADMIN_USERNAME
 declare -x OWNCLOUD_ADMIN_PASSWORD
 
@@ -19,6 +21,8 @@ declare -x OWNCLOUD_ADMIN_PASSWORD
 [[ -z "${OWNCLOUD_DB_PASSWORD}" ]] && OWNCLOUD_DB_PASSWORD=""
 [[ -z "${OWNCLOUD_DB_HOST}" ]] && OWNCLOUD_DB_HOST=""
 [[ -z "${OWNCLOUD_DB_PREFIX}" ]] && OWNCLOUD_DB_PREFIX=""
+[[ -z "${OWNCLOUD_DB_TEST_TIMEOUT}" ]] && OWNCLOUD_DB_TEST_TIMEOUT="30"
+[[ -z "${OWNCLOUD_DB_TEST_FAIL}" ]] && OWNCLOUD_DB_TEST_FAIL="true"
 [[ -z "${OWNCLOUD_ADMIN_USERNAME}" ]] && OWNCLOUD_ADMIN_USERNAME="admin"
 [[ -z "${OWNCLOUD_ADMIN_PASSWORD}" ]] && OWNCLOUD_ADMIN_PASSWORD="admin"
 
@@ -27,6 +31,39 @@ declare -x OWNCLOUD_ADMIN_PASSWORD
   /etc/templates/config.php.tmpl
 
 find /app \( \! -user apache -o \! -group apache \) -print0 | xargs -0 chown apache:apache
+
+case "${OWNCLOUD_DB_TYPE}" in
+  "mysql")
+    if ! grep -q ":" <<<${OWNCLOUD_DB_HOST}
+    then
+      OWNCLOUD_DB_HOST=${OWNCLOUD_DB_HOST}:3306
+    fi
+
+    wait-for-it -t ${OWNCLOUD_DB_TEST_TIMEOUT} ${OWNCLOUD_DB_HOST}
+
+    if [[ $? -ne 0 && "${OWNCLOUD_DB_TEST_FAIL}" == "true" ]]
+    then
+      echo "Database didn't came up in time!"
+      /bin/s6-svscanctl -t /etc/s6
+      exit 1
+    fi
+    ;;
+  "pgsql")
+    if ! grep -q ":" <<<${OWNCLOUD_DB_HOST}
+    then
+      OWNCLOUD_DB_HOST=${OWNCLOUD_DB_HOST}:5432
+    fi
+
+    wait-for-it -t ${OWNCLOUD_DB_TEST_TIMEOUT} ${OWNCLOUD_DB_HOST}
+
+    if [[ $? -ne 0 && "${OWNCLOUD_DB_TEST_FAIL}" == "true" ]]
+    then
+      echo "Database didn't came up in time!"
+      /bin/s6-svscanctl -t /etc/s6
+      exit 1
+    fi
+    ;;
+esac
 
 pushd /app > /dev/null
   if [[ ! -f /app/config/config.php ]]
