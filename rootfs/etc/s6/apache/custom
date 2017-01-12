@@ -43,19 +43,19 @@ pushd /app > /dev/null
     [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && CMD="${CMD} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
 
     echo "Installing with: ${CMD}"
-    /sbin/su-exec \
+    su-exec \
       apache \
       ${CMD}
   else
     CMD="/usr/bin/php occ upgrade --skip-migration-test --no-interaction"
 
     echo "Upgrading with: ${CMD}"
-    /sbin/su-exec \
+    su-exec \
       apache \
       ${CMD}
   fi
 
-  /sbin/su-exec \
+  su-exec \
     apache \
     /usr/bin/php \
     occ \
