@@ -1,4 +1,4 @@
-FROM webhippie/php-apache:latest@sha256:947b7980a4f762d6006c4264f3fcb0b194a404960d0c3d325f62da8938b7fdc0
+FROM webhippie/php-apache:latest@sha256:b1be6454a647932106d85e85d6bd030ea622e43fe169451a5c1336d83e4ca024
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 VOLUME ["/app/data", "/app/config", "/app/custom"]
